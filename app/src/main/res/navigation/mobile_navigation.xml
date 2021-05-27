@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_kutuphane">
+    <fragment
+        android:id="@+id/nav_kutuphane"
+        android:name="com.patates.gamercontrol.ui.kutuphane.KutuphaneFragment"
+        android:label="library"
+        tools:layout="@layout/activity_library" >
+        <action
+            android:id="@+id/action_nav_kutuphane_to_oyunEkleFragment2"
+            app:destination="@id/nav_oyunEkle" />
+        <action
+            android:id="@+id/action_nav_kutuphane_to_oyunaBaslaFragment"
+            app:destination="@id/oyunaBaslaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_ayarlar"
+        android:name="com.patates.gamercontrol.ui.ayarlar.AyarlarFragment"
+        android:label="ayarlar"
+        tools:layout="@layout/fragment_ayarlar" />
+    <fragment
+        android:id="@+id/nav_istatistik"
+        android:name="com.patates.gamercontrol.ui.istatistik.IstatistikFragment"
+        android:label="istatistik"
+        tools:layout="@layout/fragment_istatistik" />
+    <fragment
+        android:id="@+id/nav_oyunEkle"
+        android:name="com.saye.gamercontrolcopy.ui.OyunEkle.OyunEkleFragment"
+        android:label="OyunEkleFragment" />
+    <fragment
+        android:id="@+id/oyunaBaslaFragment"
+        android:name="com.patates.gamercontrol.ui.oyunaBasla.OyunaBaslaFragment"
+        android:label="fragment_oyuna_basla"
+        tools:layout="@layout/fragment_oyuna_basla" />
+</navigation>
