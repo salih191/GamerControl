@@ -14,7 +14,9 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.patates.gamercontrol.databinding.ActivityMainBinding
+import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import kotlinx.android.synthetic.main.app_bar_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Db.createDb(this)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,38 +45,23 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         sql()
-
-
     }
 
-    override fun onResume() {
-        super.onResume()
-        println("ressume")
-    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
     fun sql(): Unit {
-        try {
-            val db=this.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
-
-            db.execSQL("CREATE TABLE IF NOT EXISTS \"Times\" (\n" +
-                    "\t\"TimeID\"\tINTEGER,\n" +
-                    "\t\"GameID\"\tINTEGER,\n" +
-                    "\t\"StarTime\"\tTEXT,\n" +
-                    "\t\"StopTime\"\tTEXT," +
-                    "\tFOREIGN KEY(\"GameID\") REFERENCES \"Games\"(\"GameID\"),\n" +
-                    "\tPRIMARY KEY(\"TimeID\" AUTOINCREMENT)\n" +
-                    ");\n")
-
-            db.execSQL("CREATE TABLE IF NOT EXISTS\"Games\" (" +
-                    "\"GameID\"INTEGER," +
-                    "\"GameName\"TEXT," +
-                    "\"GameImageId\"INTEGER," +
-                    "PRIMARY KEY(\"GameID\" AUTOINCREMENT)" +
-                    ");")
-            db.close()
-        }catch (e:Exception){println(e.message)}
+        getListTimes()
+    }
+    fun getListTimes(){
+        var list=Db.getTimeList(this)
+        list.forEach {
+            //var date=Date(it.startTime.time-it.stopTime.time)
+            var int:Int=((it.stopTime.time-it.startTime.time)/1000).toInt()
+            var double:Double=int.toDouble()
+            println("game id=${it.gameId} oynama süresi time:${(double/60)} ")
+        }
     }
 }

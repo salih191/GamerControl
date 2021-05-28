@@ -10,7 +10,9 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.patates.gamercontrol.R
+import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import com.patates.gamercontrol.ui.yardimciSiniflar.MyBrodcastReceiver
+import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
 import kotlinx.android.synthetic.main.activity_alarm.*
 
 
@@ -25,10 +27,15 @@ class AlarmActivity : AppCompatActivity() {
         mp.start()
         btnAlarmKapat.setOnClickListener{
             mp.stop()
-            var sharedPreferences=getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
-            sharedPreferences.edit().remove("Alarm").apply()
-            System.exit(0)
+            /*var sharedPreferences=getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
+            val gameId:Int=sharedPreferences.getInt("Alarm",0)*/
+            val gameId=Sp.get<Int>("Alarm",this)
+            Db.updateStopGame(this)
+            //sharedPreferences.edit().remove("Alarm").apply()
+            Sp.remove("Alarm",this)
+            Sp.remove("timeId",this)
             finish()
+            System.exit(0)
         }
         btnAlarmErtele.setOnClickListener {
             mp.stop()

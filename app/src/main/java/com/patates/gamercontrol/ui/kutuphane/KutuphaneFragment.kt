@@ -14,7 +14,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.patates.gamercontrol.GameListReyclerAdaptor
 import com.patates.gamercontrol.R
+import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import com.patates.gamercontrol.ui.yardimciSiniflar.Game
+import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
 import kotlinx.android.synthetic.main.activity_library.*
 
 class KutuphaneFragment : Fragment() {
@@ -30,30 +32,25 @@ private lateinit var listeAdapter: GameListReyclerAdaptor
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bildirimIkonu.setOnClickListener {
-            println("asda")
-        }
        context?.let {
-           var sharedPreferences=it.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
-           var alarm=sharedPreferences.getInt("Alarm",0)
+           games= Db.getGameList(it)
+          /* var sharedPreferences=it.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
+           var alarm=sharedPreferences.getInt("Alarm",0)*/
+           var alarm= Sp.get<Int>("Alarm",it)
            if(alarm!=0){
                bildirimIkonu.visibility=View.VISIBLE
                bildirimIkonu.setOnClickListener {
                    var action=KutuphaneFragmentDirections.actionNavKutuphaneToOyunaBaslaFragment(alarm)
                    Navigation.findNavController(it).navigate(action)
                }
+           }else{
+               bildirimIkonu.visibility=View.INVISIBLE
            }
        }
         fab.setOnClickListener {
-
             val action=KutuphaneFragmentDirections.actionNavKutuphaneToOyunEkleFragment2()
             Navigation.findNavController(it).navigate(action)
         }
-
-        //var game:Game=Game(1,"valorant",R.drawable.ic_launcher_foreground)
-        /*games.clear()
-        games.add(game)*/
-        sqlVeriCekme()
         val layoutManager = LinearLayoutManager(this.context)
 
         recyclerView.layoutManager = layoutManager
@@ -62,31 +59,5 @@ private lateinit var listeAdapter: GameListReyclerAdaptor
         listeAdapter.notifyDataSetChanged()
         super.onViewCreated(view, savedInstanceState)
     }
-    fun sqlVeriCekme(){
-        context?.let {
-            try {
-                val db=it.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
-                val cursor=db.rawQuery("select * from Games",null)
-                val gameIdIndex=cursor.getColumnIndex("GameID")
-                val gameNameIndex=cursor.getColumnIndex("GameName")
-                val gameImageIdIndex=cursor.getColumnIndex("GameImageId")
-                games.clear()
-                while (cursor.moveToNext()){
-                    var id=cursor.getInt(gameIdIndex)
-                    var name=cursor.getString(gameNameIndex)
-                    var imageId=cursor.getInt(gameImageIdIndex)
-                    var game=Game(id,name,imageId)
-                    games.add(game)
-                }
-                db.close()
-                listeAdapter.notifyDataSetChanged()//veri değişirse rw nin güncellenmesi
-            }catch (e:Exception){
-                println(e.message)
-            }
-        }
 
-
-
-
-    }
 }

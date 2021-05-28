@@ -36,4 +36,14 @@
         app:layout_constraintStart_toStartOf="@+id/btnOyunaBasla"
         app:layout_constraintTop_toBottomOf="@+id/btnOyunaBasla" />
 
+    <TextView
+        android:id="@+id/textViewGameName"
+        android:layout_width="120dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="61dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
