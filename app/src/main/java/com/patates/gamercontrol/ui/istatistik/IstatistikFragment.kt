@@ -20,4 +20,9 @@ class IstatistikFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_istatistik,container,false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
 }

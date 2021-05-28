@@ -17,14 +17,31 @@
 
     <TextView
         android:id="@+id/recyclerViewTextView"
-        android:layout_width="305dp"
-        android:layout_height="85dp"
+        android:layout_width="303dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/recyclerViewImageView"
         android:background="#57EFE05F"
         android:text="ÖRNEK"
-        android:textAlignment="center"
 
+        android:textAlignment="center"
+        android:textColor="#535053"
+        android:textSize="24dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/recyclerViewTextView2"
+        android:layout_width="303dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/recyclerViewImageView"
+        android:background="#57EFE05F"
+        android:text="ÖRNEK"
+
+        android:textAlignment="center"
         android:textColor="#535053"
         android:textSize="24dp">
 

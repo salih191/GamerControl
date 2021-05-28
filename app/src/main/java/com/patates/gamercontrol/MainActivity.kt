@@ -1,7 +1,9 @@
 package com.patates.gamercontrol
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -12,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.patates.gamercontrol.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,16 +41,39 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        sql()
+
+
     }
 
-   /* override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }*/
-
+    override fun onResume() {
+        super.onResume()
+        println("ressume")
+    }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+    fun sql(): Unit {
+        try {
+            val db=this.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS \"Times\" (\n" +
+                    "\t\"TimeID\"\tINTEGER,\n" +
+                    "\t\"GameID\"\tINTEGER,\n" +
+                    "\t\"StarTime\"\tTEXT,\n" +
+                    "\t\"StopTime\"\tTEXT," +
+                    "\tFOREIGN KEY(\"GameID\") REFERENCES \"Games\"(\"GameID\"),\n" +
+                    "\tPRIMARY KEY(\"TimeID\" AUTOINCREMENT)\n" +
+                    ");\n")
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS\"Games\" (" +
+                    "\"GameID\"INTEGER," +
+                    "\"GameName\"TEXT," +
+                    "\"GameImageId\"INTEGER," +
+                    "PRIMARY KEY(\"GameID\" AUTOINCREMENT)" +
+                    ");")
+            db.close()
+        }catch (e:Exception){println(e.message)}
     }
 }

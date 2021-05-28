@@ -7,8 +7,8 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.MyBrodcastReceiver
 import kotlinx.android.synthetic.main.activity_alarm.*
@@ -25,15 +25,19 @@ class AlarmActivity : AppCompatActivity() {
         mp.start()
         btnAlarmKapat.setOnClickListener{
             mp.stop()
+            var sharedPreferences=getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
+            sharedPreferences.edit().remove("Alarm").apply()
+            System.exit(0)
             finish()
         }
         btnAlarmErtele.setOnClickListener {
             mp.stop()
-            var i= Intent(applicationContext,MyBrodcastReceiver::class.java)
-            var pi= PendingIntent.getBroadcast(applicationContext,111,i,0)
-            var am=getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(5*60*1000),pi)
             finish()
         }
     }
+
+    override fun onBackPressed() {
+
+    }
+
 }

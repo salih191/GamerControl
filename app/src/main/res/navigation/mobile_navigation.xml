@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/nav_kutuphane"
         android:name="com.patates.gamercontrol.ui.kutuphane.KutuphaneFragment"
-        android:label="library"
-        tools:layout="@layout/activity_library" >
+        android:label="Kütüphane"
+        tools:layout="@layout/activity_library">
         <action
             android:id="@+id/action_nav_kutuphane_to_oyunEkleFragment2"
             app:destination="@id/nav_oyunEkle" />
@@ -19,20 +19,36 @@
     <fragment
         android:id="@+id/nav_ayarlar"
         android:name="com.patates.gamercontrol.ui.ayarlar.AyarlarFragment"
-        android:label="ayarlar"
+        android:label="Ayarlar"
         tools:layout="@layout/fragment_ayarlar" />
     <fragment
         android:id="@+id/nav_istatistik"
         android:name="com.patates.gamercontrol.ui.istatistik.IstatistikFragment"
-        android:label="istatistik"
+        android:label="İstatistik"
         tools:layout="@layout/fragment_istatistik" />
     <fragment
         android:id="@+id/nav_oyunEkle"
         android:name="com.saye.gamercontrolcopy.ui.OyunEkle.OyunEkleFragment"
-        android:label="OyunEkleFragment" />
+        android:label="Oyun Ekle" />
     <fragment
         android:id="@+id/oyunaBaslaFragment"
         android:name="com.patates.gamercontrol.ui.oyunaBasla.OyunaBaslaFragment"
-        android:label="fragment_oyuna_basla"
-        tools:layout="@layout/fragment_oyuna_basla" />
+        android:label="Oyuna basla"
+        tools:layout="@layout/fragment_oyuna_basla">
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_oyunaBaslaFragment_to_fragmentid"
+            app:destination="@id/fragmentid" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentid"
+        android:name="com.patates.gamercontrol.ui.istatistikDetay.IstatistikDetayFragment"
+        android:label="fragment_istatistik_detay"
+        tools:layout="@layout/fragment_istatistik_detay" >
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
