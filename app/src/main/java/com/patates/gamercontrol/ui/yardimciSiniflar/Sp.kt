@@ -14,15 +14,15 @@ object Sp {
             }
         }
     }
-    inline fun <reified T> get(key:String, context: Context): T {
+    inline fun <reified T> get(key:String, context: Context,defValue:T?=null): T {
         var sharedPreferences=context.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
         var value:T?=null
         when(T::class){
             Int::class->{
-                value=sharedPreferences.getInt(key,0) as T
+                value=sharedPreferences.getInt(key,defValue.toString().toIntOrNull()?:0) as T
             }
             String::class->{
-                value=sharedPreferences.getString(key,"") as T
+                value=sharedPreferences.getString(key,defValue.toString()?:"") as T
             }
         }
         return value!!
@@ -30,5 +30,9 @@ object Sp {
     fun remove(key: String,context: Context){
         var sharedPreferences=context.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
         sharedPreferences.edit().remove(key).apply()
+    }
+    fun allDataRemove(context: Context){
+        var sharedPreferences=context.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
     }
 }

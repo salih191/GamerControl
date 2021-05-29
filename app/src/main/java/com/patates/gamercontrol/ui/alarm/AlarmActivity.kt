@@ -9,22 +9,41 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import com.patates.gamercontrol.ui.yardimciSiniflar.MyBrodcastReceiver
 import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
 import kotlinx.android.synthetic.main.activity_alarm.*
+import java.io.File
+import java.lang.Exception
 
 
 class AlarmActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm)
-        var alert:Uri=RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        var ses=Sp.get<String>("sesUri",this)
+        var defaultRingtone=RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        var alert:Uri=defaultRingtone
+        if (ses!="")
+        {
+            alert=ses.toUri()
+        }
+
         var mp= MediaPlayer.create(applicationContext,alert)
-        mp.setVolume(0.5F, 0.1F)
-        mp.isLooping=true
-        mp.start()
+
+        var sesDuzeyi=Sp.get<Int>("sesDuzeyi",this).toFloat()/100
+        try {
+            mp.setVolume(sesDuzeyi,sesDuzeyi)
+            mp.isLooping=true
+            mp.start()
+        }catch (e:Exception){
+            mp= MediaPlayer.create(applicationContext,defaultRingtone)
+            mp.setVolume(sesDuzeyi,sesDuzeyi)
+            mp.isLooping=true
+            mp.start()
+        }
         btnAlarmKapat.setOnClickListener{
             mp.stop()
             /*var sharedPreferences=getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
@@ -35,7 +54,6 @@ class AlarmActivity : AppCompatActivity() {
             Sp.remove("Alarm",this)
             Sp.remove("timeId",this)
             finish()
-            System.exit(0)
         }
         btnAlarmErtele.setOnClickListener {
             mp.stop()

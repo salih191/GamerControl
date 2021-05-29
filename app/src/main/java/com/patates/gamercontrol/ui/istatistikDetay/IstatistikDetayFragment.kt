@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.patates.gamercontrol.R
+import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import kotlinx.android.synthetic.main.fragment_istatistik_detay.*
 
 
@@ -25,6 +26,15 @@ class IstatistikDetayFragment : Fragment() {
             gameId=IstatistikDetayFragmentArgs.fromBundle(it).gameId
             istatistikDetaytxt.text=gameId.toString()
         }
+        /*context?.let { c->
+            button.setOnClickListener {
+                Db.removeGame(gameId,c)
+                activity?.let {
+                    it.onBackPressed()
+                    it.onBackPressed()
+                }
+            }
+        }*/
     }
 
 }

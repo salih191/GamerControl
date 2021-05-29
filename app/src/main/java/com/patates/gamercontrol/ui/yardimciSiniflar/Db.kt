@@ -7,6 +7,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 object Db {
+    //oyun silme yaz
     fun createDb(context: Context){
         try {
             val db=context.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
@@ -74,6 +75,11 @@ object Db {
         db.close()
         return games
     }
+    fun removeGame(gameId: Int,context: Context){
+        val db=context.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
+        db.execSQL("delete from Games where GameId=$gameId")
+        db.close()
+    }
     fun addStartGame(gameId: Int,context: Context){
         val db=context.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
         try {
@@ -115,15 +121,24 @@ object Db {
             var gameId=cursor.getInt(gameIdIndex)
             var startTime=cursor.getString(startTimeIndex)
             var stopTime=cursor.getString(stopTimeIdIndex)
-            var playTime=PlayTime(timeId,gameId, stringToDate(startTime), stringToDate(stopTime))
+            var playTime=PlayTime(timeId,gameId, stringToDate(startTime)!!, stringToDate(stopTime))
             times.add(playTime)
         }
         db.close()
         return times
     }
-    private fun stringToDate(dateString:String): Date {
-        val sdf3 = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
-        var d1 = sdf3.parse(dateString)
-        return d1
+    private fun stringToDate(dateString:String?): Date? {
+        var date:Date?=null
+        dateString?.let {
+            val sdf3 = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
+            date = sdf3.parse(dateString)
+        }
+
+        return date
+    }
+    fun allDataRemove(context: Context){
+        val db=context.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
+        db.execSQL("delete from Games")
+        db.execSQL("delete from Times")
     }
 }

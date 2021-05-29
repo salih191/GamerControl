@@ -59,9 +59,11 @@ class MainActivity : AppCompatActivity() {
         var list=Db.getTimeList(this)
         list.forEach {
             //var date=Date(it.startTime.time-it.stopTime.time)
-            var int:Int=((it.stopTime.time-it.startTime.time)/1000).toInt()
-            var double:Double=int.toDouble()
-            println("game id=${it.gameId} oynama süresi time:${(double/60)} ")
+           if(it.stopTime!=null){
+               var int:Int=((it.stopTime!!.time-it.startTime.time)/1000).toInt()
+               var double:Double=int.toDouble()
+               println("game id=${it.gameId} oynama süresi time:${(double/60)} ")
+           }
         }
     }
 }

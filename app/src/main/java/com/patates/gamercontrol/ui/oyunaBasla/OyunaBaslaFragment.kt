@@ -85,7 +85,7 @@ class OyunaBaslaFragment : Fragment() {
                         try {
                             var mun=editTextTime.text.toString().toInt()
                             //var sec:Int=mun*60
-                            var sec=15
+                            var sec=5
                             am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(sec*1000),pi)
 
                             Toast.makeText(context,"Alarm ${sec}", Toast.LENGTH_LONG).show()
