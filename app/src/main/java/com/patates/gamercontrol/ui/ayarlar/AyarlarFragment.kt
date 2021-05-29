@@ -2,28 +2,26 @@ package com.patates.gamercontrol.ui.ayarlar
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
 import kotlinx.android.synthetic.main.fragment_ayarlar.*
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
+
 
 class AyarlarFragment : Fragment() {
 
@@ -42,7 +40,7 @@ class AyarlarFragment : Fragment() {
 
         context?.let {
             button2.setOnClickListener {b->
-                allDataRemove(it,b)
+                alert(b,it)
             }
             seekBar.max=100
             seekBar.progress=Sp.get("sesDuzeyi",it,100)
@@ -106,5 +104,20 @@ class AyarlarFragment : Fragment() {
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+    fun alert(view: View,context: Context){
 
+        val alertMassage = AlertDialog.Builder(context)
+        alertMassage.setTitle("Uyarı")
+        alertMassage.setMessage("Silme İşlemine devam etmek isyor musun")
+
+        alertMassage.setPositiveButton("Onayla",
+            DialogInterface.OnClickListener { dialogInterface, i ->
+                allDataRemove(context,view)
+            Toast.makeText(context,"silindi",Toast.LENGTH_LONG).show()
+        })
+        alertMassage.setNegativeButton("İptal",DialogInterface.OnClickListener { dialogInterface, i ->
+            Toast.makeText(context,"İşlem iptal edildi",Toast.LENGTH_LONG).show()
+        })
+        alertMassage.show()
+    }
 }

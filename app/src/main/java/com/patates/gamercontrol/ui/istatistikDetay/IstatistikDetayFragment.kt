@@ -1,10 +1,16 @@
 package com.patates.gamercontrol.ui.istatistikDetay
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import kotlinx.android.synthetic.main.fragment_istatistik_detay.*
@@ -28,13 +34,26 @@ class IstatistikDetayFragment : Fragment() {
         }
         /*context?.let { c->
             button.setOnClickListener {
-                Db.removeGame(gameId,c)
-                activity?.let {
-                    it.onBackPressed()
-                    it.onBackPressed()
-                }
+                alert(it,c)
             }
         }*/
     }
+    fun alert(view: View,context: Context){
 
+        val alertMassage = AlertDialog.Builder(context)
+        alertMassage.setTitle("Uyarı")
+        alertMassage.setMessage("Silme İşlemine devam etmek isyor musun")
+
+        alertMassage.setPositiveButton("Onayla",
+            DialogInterface.OnClickListener { dialogInterface, i ->
+                Db.removeGame(gameId,context)
+                var action=IstatistikDetayFragmentDirections.actionFragmentidToNavKutuphane()
+                Navigation.findNavController(view).navigate(action)
+                Toast.makeText(context,"silindi", Toast.LENGTH_LONG).show()
+            })
+        alertMassage.setNegativeButton("İptal", DialogInterface.OnClickListener { dialogInterface, i ->
+            Toast.makeText(context,"İşlem iptal edildi", Toast.LENGTH_LONG).show()
+        })
+        alertMassage.show()
+    }
 }

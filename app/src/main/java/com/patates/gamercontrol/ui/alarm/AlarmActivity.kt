@@ -46,11 +46,7 @@ class AlarmActivity : AppCompatActivity() {
         }
         btnAlarmKapat.setOnClickListener{
             mp.stop()
-            /*var sharedPreferences=getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
-            val gameId:Int=sharedPreferences.getInt("Alarm",0)*/
-            val gameId=Sp.get<Int>("Alarm",this)
             Db.updateStopGame(this)
-            //sharedPreferences.edit().remove("Alarm").apply()
             Sp.remove("Alarm",this)
             Sp.remove("timeId",this)
             finish()

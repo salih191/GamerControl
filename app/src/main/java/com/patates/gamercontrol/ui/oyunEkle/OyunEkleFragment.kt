@@ -1,16 +1,14 @@
 package com.saye.gamercontrolcopy.ui.OyunEkle
 
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import com.patates.gamercontrol.ui.yardimciSiniflar.Game
+import com.patates.gamercontrol.ui.yardimciSiniflar.KlavyeKapat
 import kotlinx.android.synthetic.main.fragment_oyun_ekle.*
 
 
@@ -37,6 +35,7 @@ class OyunEkleFragment : Fragment() {
                 Db.addGame(game,c)
 
                 activity?.let {
+                    KlavyeKapat.kapat(c,it)
                     it.onBackPressed()
                 }
             }

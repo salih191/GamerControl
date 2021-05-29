@@ -54,5 +54,8 @@
         <argument
             android:name="gameId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmentid_to_nav_kutuphane"
+            app:destination="@id/nav_kutuphane" />
     </fragment>
 </navigation>

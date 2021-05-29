@@ -17,6 +17,7 @@ import androidx.navigation.Navigation
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.kutuphane.KutuphaneFragmentDirections
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
+import com.patates.gamercontrol.ui.yardimciSiniflar.KlavyeKapat
 import com.patates.gamercontrol.ui.yardimciSiniflar.MyBrodcastReceiver
 import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
 import kotlinx.android.synthetic.main.activity_library.*
@@ -63,12 +64,11 @@ class OyunaBaslaFragment : Fragment() {
                             var pi=PendingIntent.getBroadcast(it.applicationContext,111,i,0)
                             var am=it.getSystemService(Context.ALARM_SERVICE) as AlarmManager
                             am.cancel(pi)
-                           /* var sharedPreferences=it.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
-                            sharedPreferences.edit().remove("Alarm").apply()*/
                             Sp.remove("Alarm",it)
                             Db.updateStopGame(it)
-                            activity?.let {
-                                it.onBackPressed()
+                            activity?.let {a->
+                                KlavyeKapat.kapat(it,a)
+                                a.onBackPressed()
                             }
                         }
                     }
