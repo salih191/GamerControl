@@ -15,12 +15,13 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
- class weatherTask(city:String,txtSicaklik: TextView,icon:ImageView,context: Context) : AsyncTask<String, Void, String>() {
+ class weatherTask(city:String,txtSicaklik: TextView,icon:ImageView,context: Context,txtHava:TextView) : AsyncTask<String, Void, String>() {
     var CITY=city
     var API="9582fb07cd16ab2443c898dd0cb5258f"
      var context=context
      var iconImage=icon
      var txtSicakik=txtSicaklik
+     var txtHavaNasil=txtHava
     override fun onPreExecute() {
         super.onPreExecute()
         /* Showing the ProgressBar, Making the main design GONE */
@@ -48,8 +49,12 @@ import java.util.*
 
             val temp = main.getString("temp")+"°C"
             txtSicakik.text=temp
-            val weatherDescription = weather.getString("description")
             val iconCode=weather.getString("icon")
+            if (havaNasil(iconCode)){
+                txtHavaNasil.text="Hava bugün güzel oyun oynama dışarı çık"
+            }else{
+                txtHavaNasil.text="Hava kötü boş ver dışarıyı oyun oyna"
+            }
             var icon_url="http://openweathermap.org/img/w/$iconCode.png"
             val result: Deferred<Bitmap?> = GlobalScope.async {
                 URL(icon_url).toBitmap()
@@ -69,5 +74,11 @@ import java.util.*
          }catch (e: IOException){
              null
          }
+     }
+     fun havaNasil(iconKodu:String):Boolean{
+         when(iconKodu){
+             "01d","01n","02d","02n","03d","03n","04d","04n"->return true
+         }
+         return false
      }
 }

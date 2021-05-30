@@ -46,13 +46,17 @@ class OyunaBaslaFragment : Fragment() {
             }
             if(alarm!=0){
                 if (alarm==gameId){
+                    editTextTime.visibility=View.INVISIBLE
                     btnOyunaBasla.text="alarmı kapat"
                     btnOyunaBasla.setOnClickListener {
                         context?.let {
                             var i=Intent(it.applicationContext,MyBrodcastReceiver::class.java)
                             var pi=PendingIntent.getBroadcast(it.applicationContext,111,i,0)
+                            var i2= Intent(it.applicationContext,MyBrodcastReceiverBildirim::class.java)
+                            var pi2= PendingIntent.getBroadcast(it.applicationContext,112,i2,0)
                             var am=it.getSystemService(Context.ALARM_SERVICE) as AlarmManager
                             am.cancel(pi)
+                            am.cancel(pi2)
                             Sp.remove("Alarm",it)
                             Db.updateStopGame(it)
                             activity?.let {a->
@@ -62,35 +66,49 @@ class OyunaBaslaFragment : Fragment() {
                         }
                     }
                 }else{
+                    editTextTime.visibility=View.INVISIBLE
                     btnOyunaBasla.text="kurulu bir alarm var"
                 }
 
             }else{
                 btnOyunaBasla.setOnClickListener {
-                    context?.let {
-                        var i= Intent(it.applicationContext,MyBrodcastReceiver::class.java)
-                        var pi= PendingIntent.getBroadcast(it.applicationContext,111,i,0)
-                        var i2= Intent(it.applicationContext,MyBrodcastReceiverBildirim::class.java)
-                        var pi2= PendingIntent.getBroadcast(it.applicationContext,112,i2,0)
-                        var am=it.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                        var am2=it.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                        try {
-                            var mun=editTextTime.text.toString().toInt()
-                            var sec:Long=mun.toLong()*60
-                            //var sec=mun
-                            am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(sec*1000),pi)
-                            am2.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+((sec-5*60)*1000),pi2)
-                            Toast.makeText(context,"Alarm ${sec}", Toast.LENGTH_LONG).show()
-                            Sp.add("Alarm",gameId,it)
-                            Db.addStartGame(gameId,it)
-                        }catch (e:Exception){
-                            println(e.message)
-                        }
+                    if (editTextTime.text.toString().toInt() > 5) {
+                        context?.let {
+                            var i = Intent(it.applicationContext, MyBrodcastReceiver::class.java)
+                            var pi = PendingIntent.getBroadcast(it.applicationContext, 111, i, 0)
+                            var i2 = Intent(
+                                it.applicationContext,
+                                MyBrodcastReceiverBildirim::class.java
+                            )
+                            var pi2 = PendingIntent.getBroadcast(it.applicationContext, 112, i2, 0)
+                            var am = it.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                            try {
+                                var mun = editTextTime.text.toString().toInt()
+                                var sec: Long = mun.toLong() * 60
+                                am.set(
+                                    AlarmManager.RTC_WAKEUP,
+                                    System.currentTimeMillis() + (sec * 1000),
+                                    pi
+                                )
+                                am.set(
+                                    AlarmManager.RTC_WAKEUP,
+                                    System.currentTimeMillis() + ((sec - 300) * 1000),
+                                    pi2
+                                )
+                                Toast.makeText(context, "Alarm ${sec}", Toast.LENGTH_LONG).show()
+                                Sp.add("Alarm", gameId, it)
+                                Db.addStartGame(gameId, it)
+                            } catch (e: Exception) {
+                                println(e.message)
+                            }
 
-                    }
-                    activity?.let {
-                        JavaAraclari.klavyeKapat(context,it)
-                        it.onBackPressed()
+                        }
+                        activity?.let {
+                            JavaAraclari.klavyeKapat(context, it)
+                            it.onBackPressed()
+                        }
+                    }else{
+                        Toast.makeText(context, "5 dakikadan çok olmalı", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -33,7 +33,7 @@ private lateinit var listeAdapter: GameListReyclerAdaptor
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
        context?.let {
            var sehir=Sp.get("sehir",it,"istanbul")
-           weatherTask(sehir.toLowerCase(),txtsicaklik,imageViewHava,it).execute()
+           weatherTask(sehir.toLowerCase(),txtsicaklik,imageViewHava,it,textViewHavaNasil).execute()
            games= Db.getGameList(it)
            var alarm= Sp.get<Int>("Alarm",it)
            if(alarm!=0){

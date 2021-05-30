@@ -75,6 +75,11 @@ class AyarlarFragment : Fragment() {
             }
         }
     }
+    fun sehirSec(sehir:String){
+        context?.let {
+            Sp.add("sehir",sehir,it)
+        }
+    }
     fun allDataRemove(view: View){
         context?.let {
             Sp.allDataRemove(it)

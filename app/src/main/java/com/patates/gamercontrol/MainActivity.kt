@@ -1,6 +1,9 @@
 package com.patates.gamercontrol
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Db.createDb(this)
+        createNotificationChannel()
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -43,7 +47,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        //sql()
     }
 
 
@@ -51,18 +54,16 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-    fun sql(): Unit {
-        getListTimes()
-    }
-    fun getListTimes(){
-        var list=Db.getTimeList(this)
-        list.forEach {
-            //var date=Date(it.startTime.time-it.stopTime.time)
-           if(it.stopTime!=null){
-               var int:Int=((it.stopTime!!.time-it.startTime.time)/1000).toInt()
-               var double:Double=int.toDouble()
-               println("game id=${it.gameId} oynama süresi time:${(double/60)} ")
-           }
+    private fun createNotificationChannel(){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+            val name ="bildirim"
+            val descriptonText="bildirim açık"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel= NotificationChannel("sona_5dk_kaldi",name,importance).apply {
+                description=descriptonText
+            }
+            val notificationManager:NotificationManager=getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 }

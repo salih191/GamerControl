@@ -7,7 +7,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 object Db {
-    //oyun silme yaz
     fun createDb(context: Context){
         try {
             val db=context.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)

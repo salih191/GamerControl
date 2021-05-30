@@ -53,6 +53,10 @@ class AlarmActivity : AppCompatActivity() {
         }
         btnAlarmErtele.setOnClickListener {
             mp.stop()
+            var i= Intent(applicationContext,MyBrodcastReceiver::class.java)
+            var pi= PendingIntent.getBroadcast(applicationContext,111,i,0)
+            var am=getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(5*60*1000),pi)
             finish()
         }
     }
