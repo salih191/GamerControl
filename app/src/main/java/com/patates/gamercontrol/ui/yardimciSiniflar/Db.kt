@@ -127,6 +127,25 @@ object Db {
         db.close()
         return times
     }
+    fun getByGameIDTimeList(gameId: Int,context: Context):ArrayList<PlayTime>{
+        val times=ArrayList<PlayTime>()
+        val db=context.openOrCreateDatabase("Games", Context.MODE_PRIVATE,null)
+        val cursor=db.rawQuery("select * from Times where GameID=$gameId",null)
+        val timeIdIndex=cursor.getColumnIndex("TimeID")
+        val gameIdIndex=cursor.getColumnIndex("GameID")
+        val startTimeIndex=cursor.getColumnIndex("StarTime")
+        val stopTimeIdIndex=cursor.getColumnIndex("StopTime")
+        while (cursor.moveToNext()){
+            var timeId=cursor.getInt(timeIdIndex)
+            var gameId=cursor.getInt(gameIdIndex)
+            var startTime=cursor.getString(startTimeIndex)
+            var stopTime=cursor.getString(stopTimeIdIndex)
+            var playTime=PlayTime(timeId,gameId, stringToDate(startTime)!!, stringToDate(stopTime))
+            times.add(playTime)
+        }
+        db.close()
+        return times
+    }
     private fun stringToDate(dateString:String?): Date? {
         var date:Date?=null
         dateString?.let {

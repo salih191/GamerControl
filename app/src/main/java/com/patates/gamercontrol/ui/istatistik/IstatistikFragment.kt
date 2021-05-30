@@ -1,11 +1,13 @@
 package com.patates.gamercontrol.ui.istatistik
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.patates.gamercontrol.R
+import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 
 class IstatistikFragment : Fragment() {
 
@@ -24,5 +26,4 @@ class IstatistikFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
-
 }

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
 import com.patates.gamercontrol.ui.yardimciSiniflar.Game
-import com.patates.gamercontrol.ui.yardimciSiniflar.KlavyeKapat
+import com.patates.gamercontrol.ui.yardimciSiniflar.JavaAraclari
 import kotlinx.android.synthetic.main.fragment_oyun_ekle.*
 
 
@@ -31,11 +31,11 @@ class OyunEkleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btnOyunEkle.setOnClickListener {
             context?.let {c->
-                val game=Game(0,txtOyunAdi.text.toString(),R.drawable.ic_menu_gallery)
+                val game=Game(0,txtOyunAdi.text.toString(),R.drawable.default_image)
                 Db.addGame(game,c)
 
                 activity?.let {
-                    KlavyeKapat.kapat(c,it)
+                    JavaAraclari.klavyeKapat(c,it)
                     it.onBackPressed()
                 }
             }

@@ -8,7 +8,7 @@
         android:id="@+id/nav_kutuphane"
         android:name="com.patates.gamercontrol.ui.kutuphane.KutuphaneFragment"
         android:label="Kütüphane"
-        tools:layout="@layout/activity_library">
+        tools:layout="@layout/fragment_library">
         <action
             android:id="@+id/action_nav_kutuphane_to_oyunEkleFragment2"
             app:destination="@id/nav_oyunEkle" />

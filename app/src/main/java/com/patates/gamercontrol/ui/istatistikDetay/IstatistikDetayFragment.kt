@@ -13,7 +13,13 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
+import com.patates.gamercontrol.ui.yardimciSiniflar.Zaman.gunlukOrtalamaOynamaSaati
+import com.patates.gamercontrol.ui.yardimciSiniflar.Zaman.ortalamaCikisSaati
+import com.patates.gamercontrol.ui.yardimciSiniflar.Zaman.ortalamaOyunaGirisSaati
+import com.patates.gamercontrol.ui.yardimciSiniflar.Zaman.oyunOynadigiGunSayisi
+import com.patates.gamercontrol.ui.yardimciSiniflar.Zaman.toplamOynamaSuresi
 import kotlinx.android.synthetic.main.fragment_istatistik_detay.*
+import java.util.*
 
 
 class IstatistikDetayFragment : Fragment() {
@@ -30,13 +36,23 @@ class IstatistikDetayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             gameId=IstatistikDetayFragmentArgs.fromBundle(it).gameId
-            istatistikDetaytxt.text=gameId.toString()
         }
-        /*context?.let { c->
-            button.setOnClickListener {
+        context?.let { c->
+            var data=Db.getByGameIDTimeList(gameId,c)
+            var game=Db.getGame(gameId,c)
+            game?.let {
+                textGameName.text=it.gameName
+                imageViewGameImage.setImageResource(it.gameImageId)
+                var sure=toplamOynamaSuresi(data)
+                textViewToplamOynamaSuresi.text="${sure.saat}.${sure.dakika} saat"
+                sure=gunlukOrtalamaOynamaSaati(data)
+                textViewGunlukOrtalamaOynamaSaati.text="${sure.saat}.${sure.dakika} saat"
+                textViewOyunOynadigiGunSayisi.text= oyunOynadigiGunSayisi(data).toString()+"gün"
+            }
+            btnOyunuSil.setOnClickListener {
                 alert(it,c)
             }
-        }*/
+        }
     }
     fun alert(view: View,context: Context){
 
@@ -56,4 +72,5 @@ class IstatistikDetayFragment : Fragment() {
         })
         alertMassage.show()
     }
+
 }

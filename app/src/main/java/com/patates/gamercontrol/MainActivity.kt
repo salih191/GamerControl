@@ -15,8 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.patates.gamercontrol.databinding.ActivityMainBinding
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
-import kotlinx.android.synthetic.main.app_bar_main.*
-import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        sql()
+        //sql()
     }
 
 

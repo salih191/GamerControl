@@ -14,10 +14,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.patates.gamercontrol.GameListReyclerAdaptor
 import com.patates.gamercontrol.R
-import com.patates.gamercontrol.ui.yardimciSiniflar.Db
-import com.patates.gamercontrol.ui.yardimciSiniflar.Game
-import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
-import kotlinx.android.synthetic.main.activity_library.*
+import com.patates.gamercontrol.ui.yardimciSiniflar.*
+import kotlinx.android.synthetic.main.fragment_library.*
+import kotlinx.android.synthetic.main.hava_durumu.*
 
 class KutuphaneFragment : Fragment() {
 
@@ -28,14 +27,14 @@ private lateinit var listeAdapter: GameListReyclerAdaptor
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_library, container, false)
+        return inflater.inflate(R.layout.fragment_library, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
        context?.let {
+           var sehir=Sp.get("sehir",it,"istanbul")
+           weatherTask(sehir.toLowerCase(),txtsicaklik,imageViewHava,it).execute()
            games= Db.getGameList(it)
-          /* var sharedPreferences=it.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
-           var alarm=sharedPreferences.getInt("Alarm",0)*/
            var alarm= Sp.get<Int>("Alarm",it)
            if(alarm!=0){
                bildirimIkonu.visibility=View.VISIBLE

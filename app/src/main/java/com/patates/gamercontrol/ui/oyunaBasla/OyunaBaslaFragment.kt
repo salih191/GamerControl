@@ -9,22 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import com.patates.gamercontrol.R
-import com.patates.gamercontrol.ui.kutuphane.KutuphaneFragmentDirections
-import com.patates.gamercontrol.ui.yardimciSiniflar.Db
-import com.patates.gamercontrol.ui.yardimciSiniflar.KlavyeKapat
-import com.patates.gamercontrol.ui.yardimciSiniflar.MyBrodcastReceiver
-import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
-import kotlinx.android.synthetic.main.activity_library.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.bell.*
+import com.patates.gamercontrol.ui.yardimciSiniflar.*
 import kotlinx.android.synthetic.main.fragment_oyuna_basla.*
-import java.util.*
 
 
 class OyunaBaslaFragment : Fragment() {
@@ -67,7 +56,7 @@ class OyunaBaslaFragment : Fragment() {
                             Sp.remove("Alarm",it)
                             Db.updateStopGame(it)
                             activity?.let {a->
-                                KlavyeKapat.kapat(it,a)
+                                JavaAraclari.klavyeKapat(it,a)
                                 a.onBackPressed()
                             }
                         }
@@ -81,16 +70,17 @@ class OyunaBaslaFragment : Fragment() {
                     context?.let {
                         var i= Intent(it.applicationContext,MyBrodcastReceiver::class.java)
                         var pi= PendingIntent.getBroadcast(it.applicationContext,111,i,0)
+                        var i2= Intent(it.applicationContext,MyBrodcastReceiverBildirim::class.java)
+                        var pi2= PendingIntent.getBroadcast(it.applicationContext,112,i2,0)
                         var am=it.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                        var am2=it.getSystemService(Context.ALARM_SERVICE) as AlarmManager
                         try {
                             var mun=editTextTime.text.toString().toInt()
-                            //var sec:Int=mun*60
-                            var sec=5
+                            var sec:Long=mun.toLong()*60
+                            //var sec=mun
                             am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(sec*1000),pi)
-
+                            am2.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+((sec-5*60)*1000),pi2)
                             Toast.makeText(context,"Alarm ${sec}", Toast.LENGTH_LONG).show()
-                           /* var sharedPreferences=it.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
-                            sharedPreferences.edit().putInt("Alarm",gameId).apply()*/
                             Sp.add("Alarm",gameId,it)
                             Db.addStartGame(gameId,it)
                         }catch (e:Exception){
@@ -99,6 +89,7 @@ class OyunaBaslaFragment : Fragment() {
 
                     }
                     activity?.let {
+                        JavaAraclari.klavyeKapat(context,it)
                         it.onBackPressed()
                     }
                 }

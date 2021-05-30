@@ -18,14 +18,11 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.patates.gamercontrol.R
-import com.patates.gamercontrol.ui.yardimciSiniflar.Db
-import com.patates.gamercontrol.ui.yardimciSiniflar.Sp
+import com.patates.gamercontrol.ui.yardimciSiniflar.*
 import kotlinx.android.synthetic.main.fragment_ayarlar.*
 
 
 class AyarlarFragment : Fragment() {
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +36,11 @@ class AyarlarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         context?.let {
-            button2.setOnClickListener {b->
-                alert(b,it)
+            ZilSesiButton.setOnClickListener {
+                sesSec()
+            }
+            verilerisilbtn.setOnClickListener {
+                alert(it)
             }
             seekBar.max=100
             seekBar.progress=Sp.get("sesDuzeyi",it,100)
@@ -75,11 +75,13 @@ class AyarlarFragment : Fragment() {
             }
         }
     }
-    fun allDataRemove(context: Context,view: View){
-        Sp.allDataRemove(context)
-        Db.allDataRemove(context)
-        var action=AyarlarFragmentDirections.actionNavAyarlarToNavKutuphane()
-        Navigation.findNavController(view).navigate(action)
+    fun allDataRemove(view: View){
+        context?.let {
+            Sp.allDataRemove(it)
+            Db.allDataRemove(it)
+            var action=AyarlarFragmentDirections.actionNavAyarlarToNavKutuphane()
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -104,20 +106,21 @@ class AyarlarFragment : Fragment() {
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
-    fun alert(view: View,context: Context){
+    fun alert(view: View){
+        context?.let {
+            val alertMassage = AlertDialog.Builder(context)
+            alertMassage.setTitle("Uyarı")
+            alertMassage.setMessage("Silme İşlemine devam etmek isyor musun")
 
-        val alertMassage = AlertDialog.Builder(context)
-        alertMassage.setTitle("Uyarı")
-        alertMassage.setMessage("Silme İşlemine devam etmek isyor musun")
-
-        alertMassage.setPositiveButton("Onayla",
-            DialogInterface.OnClickListener { dialogInterface, i ->
-                allDataRemove(context,view)
-            Toast.makeText(context,"silindi",Toast.LENGTH_LONG).show()
-        })
-        alertMassage.setNegativeButton("İptal",DialogInterface.OnClickListener { dialogInterface, i ->
-            Toast.makeText(context,"İşlem iptal edildi",Toast.LENGTH_LONG).show()
-        })
-        alertMassage.show()
+            alertMassage.setPositiveButton("Onayla",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    allDataRemove(view)
+                    Toast.makeText(context,"silindi",Toast.LENGTH_LONG).show()
+                })
+            alertMassage.setNegativeButton("İptal",DialogInterface.OnClickListener { dialogInterface, i ->
+                Toast.makeText(context,"İşlem iptal edildi",Toast.LENGTH_LONG).show()
+            })
+            alertMassage.show()
+        }
     }
 }
