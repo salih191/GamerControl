@@ -6,44 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".ui.oyunaBasla.OyunaBaslaFragment">
 
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="181dp"
-        android:ems="10"
-        android:inputType="time"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnOyunaBasla"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="51dp"
-        android:text="Button"
+    <ImageView
+        android:id="@+id/imageViewGameImage"
+        android:layout_width="201dp"
+        android:layout_height="186dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+
+    <TextView
+        android:id="@+id/textGameName"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="#fa4454"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#FFFFFF"
+        android:text="Game Name"
+        android:textAlignment="center"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewGameImage"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/imageViewGameImage"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGameImage" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextTime"
+        android:layout_width="201dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:hint="Süre Giriniz"
+        android:inputType="number"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewGameImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageViewGameImage"
+        app:layout_constraintTop_toBottomOf="@+id/textGameName" />
+
+    <Button
+        android:id="@+id/btnOyunaBasla"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:text="Başlat"
+        android:backgroundTint="#fa4454"
+        app:layout_constraintEnd_toEndOf="@+id/textGameName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textGameName"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGameImage" />
 
     <Button
         android:id="@+id/btnIstatistikDetay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="@+id/btnOyunaBasla"
-        app:layout_constraintTop_toBottomOf="@+id/btnOyunaBasla" />
-
-    <TextView
-        android:id="@+id/textViewGameName"
-        android:layout_width="120dp"
-        android:layout_height="22dp"
-        android:layout_marginBottom="61dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="201dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="252dp"
+        android:text="Oyun İstatisleri"
+        android:backgroundTint="#fa4454"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTime"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextTime"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGameImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

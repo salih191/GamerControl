@@ -26,7 +26,6 @@ class GameListReyclerAdaptor(val gameList : ArrayList<Game> ) : RecyclerView.Ada
 
 
     override fun onBindViewHolder(holder: GamesVH, position: Int) {
-
         holder.itemView.recyclerViewTextView.text = gameList.get(position).gameName
         holder.itemView.recyclerViewImageView.setImageResource(gameList[position].gameImageId)
         holder.itemView.setOnClickListener{

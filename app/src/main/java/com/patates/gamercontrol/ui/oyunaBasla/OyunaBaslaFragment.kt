@@ -36,10 +36,9 @@ class OyunaBaslaFragment : Fragment() {
         context?.let {
             var game=Db.getGame(gameId,it)
             game?.let {
-                textViewGameName.text=it.gameName
+                textGameName.text=it.gameName
+                imageViewGameImage.setImageResource(it.gameImageId)
             }
-            /*var sharedPreferences=it.getSharedPreferences("com.patates.gamercontrol",Context.MODE_PRIVATE)
-            var alarm=sharedPreferences.getInt("Alarm",0)*/
             var alarm=0
             Sp.get<Int>("Alarm",it)?.let {
                 alarm=it

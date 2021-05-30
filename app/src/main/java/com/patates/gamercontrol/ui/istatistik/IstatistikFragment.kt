@@ -8,6 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.patates.gamercontrol.R
 import com.patates.gamercontrol.ui.yardimciSiniflar.Db
+import com.patates.gamercontrol.ui.yardimciSiniflar.Zaman
+import kotlinx.android.synthetic.main.fragment_istatistik.*
+import kotlinx.android.synthetic.main.fragment_istatistik.textViewGunlukOrtalamaOynamaSaati
+import kotlinx.android.synthetic.main.fragment_istatistik_detay.*
 
 class IstatistikFragment : Fragment() {
 
@@ -24,6 +28,13 @@ class IstatistikFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        context?.let {
+            var data=Db.getTimeList(it)
+            var sure= Zaman.toplamOynamaSuresi(data)
+            textViewToplamOynamaSaati.text="${sure.saat}.${sure.dakika} saat"
+            sure= Zaman.gunlukOrtalamaOynamaSaati(data)
+            textViewGunlukOrtalamaOynamaSaati.text="${sure.saat}.${sure.dakika} saat"
+            textViewOynadigiGunSayisi.text= Zaman.oyunOynadigiGunSayisi(data).toString()+"gün"
+        }
     }
 }

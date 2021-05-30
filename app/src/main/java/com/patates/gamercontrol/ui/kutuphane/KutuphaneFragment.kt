@@ -35,6 +35,9 @@ private lateinit var listeAdapter: GameListReyclerAdaptor
            var sehir=Sp.get("sehir",it,"istanbul")
            weatherTask(sehir.toLowerCase(),txtsicaklik,imageViewHava,it,textViewHavaNasil).execute()
            games= Db.getGameList(it)
+           if (games.size==0){
+               textBos.visibility=View.VISIBLE
+           }
            var alarm= Sp.get<Int>("Alarm",it)
            if(alarm!=0){
                bildirimIkonu.visibility=View.VISIBLE

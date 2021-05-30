@@ -44,6 +44,8 @@ class AyarlarFragment : Fragment() {
             }
             seekBar.max=100
             seekBar.progress=Sp.get("sesDuzeyi",it,100)
+            var sehir=Sp.get<String>("sehir",it,"İstanbul")
+            txtSehir.setText(sehir)
         }
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
@@ -61,6 +63,10 @@ class AyarlarFragment : Fragment() {
                 }
             }
         })
+        btnSehirKaydet.setOnClickListener {
+            context?.let { Sp.add("sehir",txtSehir.text.toString(),it)
+            JavaAraclari.klavyeKapat(it,activity)}
+        }
     }
 
     fun sesSec(){
@@ -73,11 +79,6 @@ class AyarlarFragment : Fragment() {
                 var soundIntent=Intent(Intent.ACTION_PICK,MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
                 startActivityForResult(soundIntent,2)
             }
-        }
-    }
-    fun sehirSec(sehir:String){
-        context?.let {
-            Sp.add("sehir",sehir,it)
         }
     }
     fun allDataRemove(view: View){

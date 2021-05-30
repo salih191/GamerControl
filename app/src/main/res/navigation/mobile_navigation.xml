@@ -49,8 +49,8 @@
     <fragment
         android:id="@+id/fragmentid"
         android:name="com.patates.gamercontrol.ui.istatistikDetay.IstatistikDetayFragment"
-        android:label="fragment_istatistik_detay"
-        tools:layout="@layout/fragment_istatistik_detay" >
+        android:label="istatistik detay"
+        tools:layout="@layout/fragment_istatistik_detay">
         <argument
             android:name="gameId"
             app:argType="integer" />

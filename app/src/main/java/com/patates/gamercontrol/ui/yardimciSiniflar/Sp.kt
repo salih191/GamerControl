@@ -10,7 +10,7 @@ object Sp {
                 sharedPreferences.edit().putInt(key,value as Int).apply()
             }
             String::class->{
-                sharedPreferences.edit().putString(key,value as String).apply()
+                if (value.toString()!="")sharedPreferences.edit().putString(key,value as String).apply()
             }
         }
     }

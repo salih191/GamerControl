@@ -8,133 +8,134 @@
     tools:context=".ui.istatistikDetay.IstatistikDetayFragment">
 
 
-    <ImageView
-        android:id="@+id/imageViewGameImage"
-        android:layout_width="201dp"
-        android:layout_height="186dp"
-        android:src="@drawable/default_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.237" />
+        <ImageView
+            android:id="@+id/imageViewGameImage"
+            android:layout_width="201dp"
+            android:layout_height="186dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
 
-    <TextView
-        android:id="@+id/textGameName"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#fa4454"
-        android:fontFamily="sans-serif-medium"
-        android:text="Game Name"
-        android:textAlignment="center"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnOyunuSil"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewGameImage"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/imageViewGameImage"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewGameImage"
-        app:layout_constraintVertical_bias="0.01" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:background="#8B9F9F9F"
-        android:fontFamily="sans-serif-medium"
-        android:text="Toplam Oynama Süresi :"
-        android:textAlignment="center"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.63" />
-
-    <TextView
-        android:id="@+id/textViewGunlukOrtalamaOynamaSaati"
-        android:layout_width="83dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:text="0000"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textViewToplamOynamaSuresi"
-        android:layout_width="83dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:text="0000"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textViewOyunOynadigiGunSayisi"
-        android:layout_width="83dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:text="0000"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/txtsicaklik"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.014"
-        app:layout_constraintStart_toEndOf="@+id/txtsicaklik"
-        app:layout_constraintTop_toTopOf="@+id/txtsicaklik"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:background="#8B9F9F9F"
-        android:fontFamily="sans-serif-medium"
-        android:text="Günlük Ortalama Oynama Saati :"
-        android:textAlignment="center"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.049" />
-
-    <TextView
-        android:id="@+id/txtsicaklik"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:background="#8B9F9F9F"
-        android:fontFamily="sans-serif-medium"
-        android:text="Oyun Oynadığı Gün Sayısı :"
-        android:textAlignment="center"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.076" />
+        <TextView
+            android:id="@+id/textGameName"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:background="#fa4454"
+            android:fontFamily="sans-serif-medium"
+            android:text="Game Name"
+            android:textAlignment="center"
+            android:textSize="19sp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewGameImage"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="@+id/imageViewGameImage"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewGameImage" />
 
     <Button
         android:id="@+id/btnOyunuSil"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="272dp"
         android:backgroundTint="#D5101F"
         android:text="Oyunu Sil"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewGameImage"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/imageViewGameImage"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.927" />
+        app:layout_constraintEnd_toEndOf="@+id/textGameName"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textGameName"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGameImage"
+        tools:ignore="NotSibling" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="276dp"
+        android:layout_height="136dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btnOyunuSil"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textGameName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTime"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:enabled="false"
+            android:text="Toplam Oynama Süresi"
+            android:textColor="#000000" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText3"
+            android:layout_width="265dp"
+            android:layout_height="45dp"
+            android:enabled="false"
+            android:text="Günlük Ortalama Oynama Saati"
+            android:textColor="#000000" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText4"
+            android:layout_width="219dp"
+            android:layout_height="45dp"
+            android:enabled="false"
+            android:text="Oyun Oynadığı Gün Sayısı"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="108dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="13dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/textViewToplamOynamaSuresi"
+            android:layout_width="98dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:text="0000"
+            android:textAlignment="center"
+            android:textSize="20sp"
+
+            />
+
+        <TextView
+            android:id="@+id/textViewGunlukOrtalamaOynamaSaati"
+            android:layout_width="97dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:text="0000"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewOyunOynadigiGunSayisi"
+            android:layout_width="98dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:text="0000"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

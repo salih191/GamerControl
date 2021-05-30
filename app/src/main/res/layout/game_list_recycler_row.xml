@@ -19,12 +19,13 @@
         android:id="@+id/recyclerViewTextView"
         android:layout_width="305dp"
         android:layout_height="85dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/recyclerViewImageView"
         android:background="#57EFE05F"
         android:text="ÖRNEK"
+        android:gravity="center"
         android:textAlignment="center"
-
         android:textColor="#535053"
         android:textSize="24dp">
 
