@@ -13,7 +13,7 @@
         android:layout_height="85dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
-        app:srcCompat="@drawable/ic_menu_gallery" />
+        app:srcCompat="@drawable/default_image" />
 
     <TextView
         android:id="@+id/recyclerViewTextView"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/recyclerViewImageView"
-        android:background="#57EFE05F"
+        android:background="#573C3C3B"
         android:text="ÖRNEK"
         android:gravity="center"
         android:textAlignment="center"

@@ -66,6 +66,7 @@
         android:id="@+id/seekBar"
         android:layout_width="225dp"
         android:layout_height="30dp"
+        android:progressTint="#5A5656"
         android:thumbTint="#fa4454"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

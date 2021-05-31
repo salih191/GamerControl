@@ -71,7 +71,7 @@ class OyunaBaslaFragment : Fragment() {
 
             }else{
                 btnOyunaBasla.setOnClickListener {
-                    if (editTextTime.text.toString().toInt() > 5) {
+                    if (editTextTime.text.toString()!=""&&editTextTime.text.toString().toInt() > 5) {
                         context?.let {
                             var i = Intent(it.applicationContext, MyBrodcastReceiver::class.java)
                             var pi = PendingIntent.getBroadcast(it.applicationContext, 111, i, 0)
