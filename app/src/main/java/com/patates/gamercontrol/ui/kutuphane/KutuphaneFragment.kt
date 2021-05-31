@@ -37,6 +37,8 @@ private lateinit var listeAdapter: GameListReyclerAdaptor
            games= Db.getGameList(it)
            if (games.size==0){
                textBos.visibility=View.VISIBLE
+           }else{
+               textBos.visibility=View.GONE
            }
            var alarm= Sp.get<Int>("Alarm",it)
            if(alarm!=0){

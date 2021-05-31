@@ -35,7 +35,7 @@ class OyunEkleFragment : Fragment() {
                 Db.addGame(game,c)
 
                 activity?.let {
-                    JavaAraclari.klavyeKapat(c,it)
+                    JavaAraclari.hideKeyboard(it)
                     it.onBackPressed()
                 }
             }

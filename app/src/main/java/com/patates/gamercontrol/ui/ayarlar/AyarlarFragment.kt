@@ -44,7 +44,7 @@ class AyarlarFragment : Fragment() {
             }
             seekBar.max=100
             seekBar.progress=Sp.get("sesDuzeyi",it,100)
-            var sehir=Sp.get<String>("sehir",it,"İstanbul")
+            var sehir=Sp.get<String>("sehir",it,"istanbul")
             txtSehir.setText(sehir)
         }
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -65,7 +65,10 @@ class AyarlarFragment : Fragment() {
         })
         btnSehirKaydet.setOnClickListener {
             context?.let { Sp.add("sehir",txtSehir.text.toString(),it)
-            JavaAraclari.klavyeKapat(it,activity)}
+            activity?.let {a->
+                JavaAraclari.hideKeyboard(a)
+                }
+            }
         }
     }
 

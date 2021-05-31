@@ -59,7 +59,7 @@ class OyunaBaslaFragment : Fragment() {
                             Sp.remove("Alarm",it)
                             Db.updateStopGame(it)
                             activity?.let {a->
-                                JavaAraclari.klavyeKapat(it,a)
+                                JavaAraclari.hideKeyboard(a)
                                 a.onBackPressed()
                             }
                         }
@@ -103,7 +103,7 @@ class OyunaBaslaFragment : Fragment() {
 
                         }
                         activity?.let {
-                            JavaAraclari.klavyeKapat(context, it)
+                            JavaAraclari.hideKeyboard(it)
                             it.onBackPressed()
                         }
                     }else{
