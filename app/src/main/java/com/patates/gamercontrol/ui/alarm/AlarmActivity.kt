@@ -33,7 +33,7 @@ class AlarmActivity : AppCompatActivity() {
 
         var mp= MediaPlayer.create(applicationContext,alert)
 
-        var sesDuzeyi=Sp.get<Int>("sesDuzeyi",this).toFloat()/100
+        var sesDuzeyi=Sp.get<Int>("sesDuzeyi",this,100).toFloat()/100
         try {
             mp.setVolume(sesDuzeyi,sesDuzeyi)
             mp.isLooping=true

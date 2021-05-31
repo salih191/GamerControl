@@ -51,9 +51,9 @@ import java.util.*
             txtSicakik.text=temp
             val iconCode=weather.getString("icon")
             if (havaNasil(iconCode)){
-                txtHavaNasil.text="Hava bugün güzel oyun oynama dışarı çık"
+                txtHavaNasil.text="Hava bugün güzel dışarı çıkıp oynamaya ne dersin?"
             }else{
-                txtHavaNasil.text="Hava kötü boş ver dışarıyı oyun oyna"
+                txtHavaNasil.text="Hava bugün kötü gözüküyor, bence evde oynayabilirsin"
             }
             var icon_url="http://openweathermap.org/img/w/$iconCode.png"
             val result: Deferred<Bitmap?> = GlobalScope.async {

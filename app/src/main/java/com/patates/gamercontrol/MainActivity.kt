@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity() {
             val channel= NotificationChannel("sona_5dk_kaldi",name,importance).apply {
                 description=descriptonText
             }
-            val notificationManager:NotificationManager=getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager:NotificationManager=
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
     }
