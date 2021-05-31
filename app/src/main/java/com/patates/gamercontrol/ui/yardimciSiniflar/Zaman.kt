@@ -53,6 +53,7 @@ object Zaman {
     fun gunlukOrtalamaOynamaSaati(sureListesi:ArrayList<PlayTime>):Sure{
         var gunler= HashSet<Int>()
         var gunlukOrtalama=ArrayList<Double>()
+        var toplam:Double=0.0
         sureListesi.forEach {
             gunler.add(it.startTime.day)
         }
@@ -62,12 +63,15 @@ object Zaman {
             sureListesi.filter { it.startTime.day==g }.forEach { p->
                 p.stopTime?.let {
                     sayac++
-                    ortalama+=((it.time-p.startTime.time)/1000).toDouble()
+                    ortalama+=((it.time-p.startTime.time)/60000).toDouble()
                 }
                 gunlukOrtalama.add(ortalama/sayac)
             }
         }
-        return doubleToSure(gunlukOrtalama.average())
+        gunlukOrtalama.forEach {
+            toplam+=it
+        }
+        return doubleToSure(toplam/gunlukOrtalama.size)
     }
     fun oyunOynadigiGunSayisi(sureListesi:ArrayList<PlayTime>):Int{
         var gunler= HashSet<Int>()
